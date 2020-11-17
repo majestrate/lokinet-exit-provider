@@ -1,0 +1,9 @@
+body, html {
+    background: #ffd
+}
+
+footer {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+}

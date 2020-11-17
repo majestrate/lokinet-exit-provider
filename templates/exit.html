@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block head %}
+  {% if amount > 0 %}
+    <title> getting exit... </title>
+    <meta http-equiv="refresh" content="5" />
+  {% else %}
+    <title> exit granted </title>
+  {% endif %}
+{% endblock %}
+
+{% block body %}
+  <pre>
+    {% if amount == 0 %}
+      your payment has succeeded
+      your exit-node is: {{exit_addr}}
+      your auth-code is: {{token}}
+    {% else %}
+      please send {{amount}} to {{pay_address}} to obtain your exit.
+    {% endif %}
+  </pre>
+{% endblock %}

@@ -1,0 +1,10 @@
+#cloud-config
+  
+runcmd:
+  - [bash, -c, curl -so /etc/apt/trusted.gpg.d/loki.gpg https://deb.loki.network/pub.gpg]
+  - [bash, -c, echo "deb https://deb.loki.network $(lsb_release -sc) main" > /etc/apt/sources.list.d/loki.list]
+  - [bash, -c, apt update]
+  - [bash, -c, apt upgrade -y]
+  - [bash, -c, apt install -y lokinet]
+  - [bash, -c, curl -so /var/lib/lokinet/lokinet.ini https://i2p.rocks/files/lokinet/lokinet-exit.ini]
+  - [bash, -c, systemctl restart lokinet]
