@@ -18,8 +18,8 @@ a (toy) vpn provider app server that takes ~~loki~~ oxen as payment.
 
 get the server source code:
 
-    $ git clone https://github.com/majestrate/lokinet-exit
-    $ cd lokinet-exit
+    $ git clone https://github.com/majestrate/lokinet-exit-provider
+    $ cd lokinet-exit-provider
 
 configure the server:
 
