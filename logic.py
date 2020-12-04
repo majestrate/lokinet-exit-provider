@@ -6,9 +6,9 @@ import os
 
 import config
 
-import logger
+import logging
 
-log = logger.getLogger(__name__)
+log = logging.getLogger(__name__)
 
 @contextmanager
 def make_conn():
