@@ -25,7 +25,7 @@ def has_exit(token):
     """
     try:
         token = token.decode('ascii')
-        log,info("check for {}".format(token))
+        log.info("check for {}".format(token))
         with make_conn() as cur:
             cur.execute("SELECT count(*) FROM authed_exits WHERE token = %s", (token,))
             return cur.fetchone()[0] > 0
