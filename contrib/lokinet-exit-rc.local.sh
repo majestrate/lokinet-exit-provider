@@ -23,5 +23,5 @@ done
 sysctl net.netfilter.nf_conntrack_max=331072
 
 # put a file down with our lokinet address in it
-dig @127.3.2.1 +short -t cname localhost.loki > /tmp/lokinet-addr.txt
-chmod 444 /tmp/lokinet-addr.txt
+dig @127.3.2.1 +short -t cname localhost.loki > /data/lokinet-addr.txt
+chmod 444 /data/lokinet-addr.txt
