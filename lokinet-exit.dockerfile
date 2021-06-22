@@ -1,0 +1,23 @@
+FROM debian:stable AS lokinet-exit
+
+# set up packages
+RUN /bin/bash -c 'echo "man-db man-db/auto-update boolean false" | debconf-set-selections'
+RUN /bin/bash -c 'apt-get -o=Dpkg::Use-Pty=0 -q update && apt-get -o=Dpkg::Use-Pty=0 -q dist-upgrade -y && apt-get -o=Dpkg::Use-Pty=0 -q install -y curl iptables ip6tables'
+RUN /bin/bash -c 'curl -so /etc/apt/trusted.gpg.d/lokinet.gpg https://deb.oxen.io/pub.gpg'
+RUN /bin/bash -c 'echo "deb https://deb.oxen.io $(lsb_release -sc) main" > /etc/apt/sources.list.d/lokinet.list'
+RUN /bin/bash -c 'apt-get -o=Dpkg::Use-Pty=0 -q update && apt-get -o=Dpkg::Use-Pty=0 -q dist-upgrade -y && apt-get -o=Dpkg::Use-Pty=0 -q install -y lokinet'
+
+# make config dir for lokinet
+RUN /bin/bash -c 'mkdir -p /var/lib/lokinet/conf.d'
+
+
+# set up configs for lokinet
+COPY contrib/lokinet-exit.ini /var/lib/lokinet/conf.d/exit.ini
+# set up system configs
+COPY contrib/lokinet-exit-sysctl.conf /etc/sysctl.d/00-lokinet-exit.conf
+COPY contrib/lokinet-exit-rc.local.sh /etc/rc.local
+
+
+# set up auth
+FROM lokinet-exit AS lokinet-authed-exit
+COPY contrib/lokinet-auth.ini /var/lib/lokinet/conf.d/auth.ini

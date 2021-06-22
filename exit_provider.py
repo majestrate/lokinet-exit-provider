@@ -12,6 +12,8 @@ import struct
 
 import config
 import logic
+import k8api
+
 
 logic.create_tables()
 
@@ -54,16 +56,18 @@ def find_tx_for(index):
 
 # atomic units per human readable unit
 multiplier = 1000000000
-            
+
 def get_charge_amount(address):
     """
     get the amount to charge for a loki pay address
     """
     return 100 * multiplier
 
+
 @app.route("/")
 def exit_auth():
     pay_address = session.get("address", None)
+    exit_addr = None
     if pay_address is None:
         result = obtain_sub_address()
         if result:
@@ -83,8 +87,9 @@ def exit_auth():
         token = session.get('token')
         token = token.decode('ascii')
         if amount_left == 0 and not logic.has_exit(token):
-            logic.grant_exit_for(subaddr, token)
-    return render_template("exit.html", token=token, exit_addr=config.EXIT_ADDR, amount=(amount_left / float(multiplier)), pay_address=pay_address)
+            exit_addr = k8api.spawn_new_exit()
+            logic.grant_exit_for(subaddr, token, exit_addr)
+    return render_template("exit.html", token=token, exit_addr=exit_addr, amount=(amount_left / float(multiplier)), pay_address=pay_address)
 
 
 
@@ -95,4 +100,4 @@ def exit_auth():
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
     logic.create_tables()
-    app.run('0.0.0.0', port=4000, debug=True)
+    app.run(config.WEB_HOST, port=config.WEB_PORT, debug=config.DEBUG)

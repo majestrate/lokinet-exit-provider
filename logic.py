@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import base64
-from contextlib import contextmanager 
+from contextlib import contextmanager
 import psycopg2
 import os
 
@@ -32,21 +32,22 @@ def has_exit(token):
     except Exception as ex:
         log.warn("failed to check for exit status: {}".format(ex))
         return False
-        
 
-def grant_exit_for(subaddr, token):
+
+
+def grant_exit_for(subaddr, token, exit_addr):
     """
-    allow a token on subaddress to use the exit
+    allow a token on subaddress to use the exit at exit_addr
     """
     with make_conn() as cur:
-        cur.execute("INSERT INTO authed_exits(token, subaddr) VALUES(%s, %s)", (token, subaddr))
-        
+        cur.execute("INSERT INTO authed_exits(token, subaddr, lokiaddr) VALUES(%s, %s, %s)", (token, subaddr, exit_addr))
+
 def create_tables():
     """
     create database tables
     """
     with make_conn() as cur:
-        cur.execute("CREATE TABLE IF NOT EXISTS authed_exits(token TEXT PRIMARY KEY, subaddr BIGINT NOT NULL, created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT (now() AT TIME ZONE 'utc'))")
+        cur.execute("CREATE TABLE IF NOT EXISTS authed_exits(token TEXT PRIMARY KEY, subaddr BIGINT NOT NULL, created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT (now() AT TIME ZONE 'utc'), lokiaddr TEXT NOT NULL)")
 
 if __name__ == '__main__':
     import sys
