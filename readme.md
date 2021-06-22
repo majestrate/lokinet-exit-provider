@@ -4,6 +4,8 @@ a (toy) vpn provider app server that takes ~~loki~~ oxen as payment.
 
 ## requirements
 
+building:
+
 * cli wallet rpc
 * postgresql
 * python3
@@ -12,5 +14,14 @@ a (toy) vpn provider app server that takes ~~loki~~ oxen as payment.
 * python3-requests
 * python3-kubernetes
 * [pyoxenmq](https://github.com/oxen-io/oxen-pylokimq)
-* python3-gunicorn (optional)
-* multipass (optional)
+
+running:
+
+* docker
+* docker-compose
+
+## usage
+
+to start a new exit:
+
+    $ docker-compose up -d
