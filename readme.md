@@ -26,6 +26,10 @@ to start a new exit:
 
     $ docker-compose up -d
 
+get the `.loki` address:
+
+    $ docker-compose exec lokinet cat /data/lokinet-addr.txt
+
 to update the exit image:
 
     $ docker-compose down
