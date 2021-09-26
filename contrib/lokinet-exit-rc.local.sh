@@ -21,3 +21,5 @@ for port in 22 25 ; do
         iptables -A FORWARD -p tcp --dport $port -j REJECT --reject-with tcp-reset -s $exit_range
 done
 
+# set nameserver
+echo 'nameserver 127.3.2.1' > /etc/resolv.conf
