@@ -1,6 +1,6 @@
 # lokinet exit provider 
 
-a (toy) vpn provider app server that takes ~~loki~~ oxen as payment.
+docker jizz for running lokinet exits.
 
 ## running
 
