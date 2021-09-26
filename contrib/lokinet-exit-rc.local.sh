@@ -7,18 +7,17 @@ iptables -t nat --flush
 
 # find default route's interface name
 exit_if=$(ip route | grep ^default | cut -d' ' -f5)
-exit_range=10.0.0.0/16
+
+# get lokinet's address
+if_name=lokitun0
+if_range=$(ip addr show $if_name | grep inet\  | sed 's/inet //' | cut -d' ' -f5)
 
 # add ipv4 forward rule
-iptables -t nat -A POSTROUTING -s $exit_range -o $exit_if -j MASQUERADE
-# add ipv6 forward rule
-# ip6tables -t nat -A POSTROUTING -s fd00::ffff:a00:1/120 -o $exit_if -j MASQUERADE
+iptables -t nat -A POSTROUTING -s $if_range -o $exit_if -j MASQUERADE
 
 # drop outbound ports
 for port in 22 25 ; do
-        #iptables -A INPUT -p tcp --dport $port -j REJECT
-        #iptables -A OUTPUT -p tcp --dport $port -j REJECT
-        iptables -A FORWARD -p tcp --dport $port -j REJECT --reject-with tcp-reset -s $exit_range
+        iptables -A FORWARD -p tcp --dport $port -j REJECT --reject-with tcp-reset -s $if_range
 done
 
 # set nameserver
