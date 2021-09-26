@@ -11,8 +11,6 @@ services:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - /sys/fs/cgroup/systemd
       - ./data:/data
-    sysctls:
-      - net.netfilter.nf_conntrack_max=331072
 
 volumes:
   data:
