@@ -18,7 +18,7 @@ iptables -t nat -A POSTROUTING -s $exit_range -o $exit_if -j MASQUERADE
 for port in 22 25 ; do
         #iptables -A INPUT -p tcp --dport $port -j REJECT
         #iptables -A OUTPUT -p tcp --dport $port -j REJECT
-        iptables -A FORWARD -p tcp --dport $port -j REJECT --reject-with-tcp-reset -s $exit_range
+        iptables -A FORWARD -p tcp --dport $port -j REJECT --reject-with tcp-reset -s $exit_range
 done
 
 # increase nat conntrack size
