@@ -30,15 +30,3 @@ to update the exit image:
     $ docker-compose up -d
 
 
-## building images
-
-building docker images from source:
-
-* cli wallet rpc
-* postgresql
-* python3
-* python3-flask
-* python3-psycopg2
-* python3-requests
-* python3-kubernetes
-* [pyoxenmq](https://github.com/oxen-io/oxen-pylokimq)
