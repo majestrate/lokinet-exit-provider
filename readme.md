@@ -2,6 +2,8 @@
 
 docker jizz for running lokinet exits.
 
+**ABSOLUTELY *ZERO* TECH SUPPORT PROVIDED**
+
 ## running
 
 ### requirements
