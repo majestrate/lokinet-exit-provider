@@ -1,0 +1,5 @@
+# lokinet firewall cronjobs
+
+SHELL=/bin/bash
+
+0 * * * * /usr/local/bin/lokinet-update-firewall.sh

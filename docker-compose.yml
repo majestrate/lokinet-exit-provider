@@ -1,7 +1,7 @@
 version: '2'
 services:
   lokinet:
-    image: registry.oxen.rocks/lokinet-exit:latest
+    image: registry.oxen.rocks/lokinet-exit-firewalled:latest
     privileged: true
     tty: true
     tmpfs:

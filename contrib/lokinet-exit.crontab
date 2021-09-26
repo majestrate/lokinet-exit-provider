@@ -4,3 +4,4 @@ SHELL=/bin/bash
 
 * * * * * /usr/local/bin/lokinet-update-exit-address.sh
 * * * * * /usr/local/bin/lokinet-kill-scans.sh
+0 * * * * /usr/local/bin/lokinet-update-firewall.sh
