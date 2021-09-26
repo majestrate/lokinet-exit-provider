@@ -10,7 +10,7 @@ services:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - /sys/fs/cgroup/systemd
-      - ./data:/data
+      - data:/data
 
 volumes:
   data:
