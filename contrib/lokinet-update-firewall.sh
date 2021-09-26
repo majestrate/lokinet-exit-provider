@@ -6,5 +6,5 @@ if_range=$(ip addr show $if_name | grep inet\  | sed 's/inet //' | cut -d' ' -f5
 
 # drop blacklisted ranges
 for range in $(wget --quiet https://raw.githubusercontent.com/Naunter/BT_BlockLists/master/bt_blocklists.gz -O - | zcat | parse-blocklist.py ) ; do
-    iptables -t nat -A FORWARD -j REJECT -d $range -s $if_range &> /dev/null || true;
+    iptables -A FORWARD -j REJECT -d $range -s $if_range &> /dev/null || true;
 done
