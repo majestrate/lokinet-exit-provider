@@ -19,7 +19,7 @@ to start a new unauthenticated exit:
 
 get the `.loki` address:
 
-    $ docker-compose exec lokinet cat /data/lokinet-addr.txt
+    $ docker-compose exec lokinet print-lokinet-address.sh
 
 to update the exit image:
 
