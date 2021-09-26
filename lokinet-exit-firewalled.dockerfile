@@ -12,3 +12,5 @@ RUN /bin/bash -c 'chmod 700 /usr/local/bin/lokinet-update-firewall.sh'
 
 COPY contrib/lokinet-firewall.crontab /etc/cron.d/lokinet-firewall
 RUN /bin/bash -c 'chmod 644 /etc/cron.d/lokinet-firewall'
+
+RUN /bin/bash -c 'echo /usr/local/bin/lokinet-update-firewall.sh >> /etc/rc.local'
