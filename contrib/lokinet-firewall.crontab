@@ -2,4 +2,5 @@
 
 SHELL=/bin/bash
 
-0 * * * * /usr/local/bin/lokinet-update-firewall.sh
+0 * * * * root /usr/local/bin/lokinet-update-firewall.sh
+

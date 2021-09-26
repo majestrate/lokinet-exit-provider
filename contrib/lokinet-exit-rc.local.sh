@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# wait for lokinet
+sleep 10
+
 # flush iptables
 iptables -t nat --flush
 
