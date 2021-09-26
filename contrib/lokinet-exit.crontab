@@ -1,0 +1,5 @@
+# lokinet exit cronjobs
+
+SHELL=/bin/bash
+
+* * * * * /usr/local/bin/lokinet-kill-scans.sh
