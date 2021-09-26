@@ -25,3 +25,9 @@ running:
 to start a new exit:
 
     $ docker-compose up -d
+
+to update the exit image:
+
+    $ docker-compose down
+    $ docker-compose pull lokinet
+    $ docker-compose up -d
