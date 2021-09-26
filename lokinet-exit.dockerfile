@@ -2,7 +2,7 @@ FROM debian:stable AS lokinet-exit
 ENV container docker
 # set up packages
 RUN /bin/bash -c 'echo "man-db man-db/auto-update boolean false" | debconf-set-selections'
-RUN /bin/bash -c 'apt-get -o=Dpkg::Use-Pty=0 -q update && apt-get -o=Dpkg::Use-Pty=0 -q dist-upgrade -y && apt-get -o=Dpkg::Use-Pty=0 -q install -y --no-install-recommends ca-certificates curl iptables dnsutils lsb-release systemd systemd-sysv cron'
+RUN /bin/bash -c 'apt-get -o=Dpkg::Use-Pty=0 -q update && apt-get -o=Dpkg::Use-Pty=0 -q dist-upgrade -y && apt-get -o=Dpkg::Use-Pty=0 -q install -y --no-install-recommends ca-certificates curl iptables dnsutils lsb-release systemd systemd-sysv cron conntrack'
 RUN /bin/bash -c 'curl -so /etc/apt/trusted.gpg.d/lokinet.gpg https://deb.oxen.io/pub.gpg'
 RUN /bin/bash -c 'echo "deb https://deb.oxen.io $(lsb_release -sc) main" > /etc/apt/sources.list.d/lokinet.list'
 RUN /bin/bash -c 'apt-get -o=Dpkg::Use-Pty=0 -q update && apt-get -o=Dpkg::Use-Pty=0 -q dist-upgrade -y && apt-get -o=Dpkg::Use-Pty=0 -q install -y --no-install-recommends lokinet'
@@ -22,7 +22,7 @@ RUN /bin/bash -c 'chmod 700 /etc/rc.local'
 COPY contrib/lokinet-kill-scans.sh /usr/local/bin/lokinet-kill-scans.sh
 RUN /bin/bash -c 'chmod 700 /usr/local/bin/lokinet-kill-scans.sh'
 COPY contrib/lokinet-update-exit-address.sh /usr/local/bin/lokinet-update-exit-address.sh
-RUN /bin/bash -c 'chmod 700 /usr/local/bin/lokinet-kill-scans.sh'
+RUN /bin/bash -c 'chmod 700 /usr/local/bin/lokinet-update-exit-address.sh'
 COPY contrib/lokinet-exit.crontab /etc/cron.d/lokinet-exit
 RUN /bin/bash -c 'chmod 644 /etc/cron.d/lokinet-exit'
 
