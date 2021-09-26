@@ -17,7 +17,7 @@ COPY contrib/print-lokinet-address.sh /usr/local/bin/print-lokinet-address.sh
 RUN /bin/bash -c 'chmod 700 /usr/local/bin/print-lokinet-address.sh'
 
 # dns
-COPY contrib/lokinet.resolv.conf /etc/resolv.conf
+COPY contrib/lokinet.resolveconf.txt /etc/resolv.conf
 RUN /bin/bash -c 'chmod 644 /etc/resolv.conf'
 
 VOLUME [ "/sys/fs/cgroup/systemd" ]

@@ -1,2 +1,0 @@
-# lokinet dns
-nameserver 127.3.2.1

@@ -2,8 +2,6 @@ FROM registry.oxen.rocks/lokinet-base:latest
 
 # set up configs for lokinet
 COPY contrib/lokinet-exit.ini /var/lib/lokinet/conf.d/exit.ini
-COPY contrib/lokinet-exit.resolv.conf /etc/resolv.conf
-RUN /bin/bash -c 'chmod 644 /etc/resolv.conf'
 
 # set up system configs
 COPY contrib/lokinet-exit-sysctl.conf /etc/sysctl.d/00-lokinet-exit.conf
