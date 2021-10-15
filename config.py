@@ -43,4 +43,4 @@ def wallet_url():
     if WALLET_RPC_AUTH_FILE:
         with open(WALLET_RPC_AUTH_FILE) as f:
             authinfo = f.read()
-    return 'http://{}@{}:{}/json_rpc'.format(f.read(), WALLET_RPC_HOST, WALLET_RPC_PORT)
+    return 'http://{}@{}:{}/json_rpc'.format(authinfo, WALLET_RPC_HOST, WALLET_RPC_PORT)
