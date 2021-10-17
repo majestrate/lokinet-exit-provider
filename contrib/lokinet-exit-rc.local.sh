@@ -19,7 +19,7 @@ if_range=$(ip addr show $if_name | grep inet\  | sed 's/inet //' | cut -d' ' -f5
 iptables -t nat -A POSTROUTING -s $if_range -o $exit_if -j MASQUERADE
 
 # drop outbound ports
-for port in 22 25 ; do
+for port in 25 ; do
         iptables -A FORWARD -p tcp --dport $port -j REJECT --reject-with tcp-reset -s $if_range
 done
 
