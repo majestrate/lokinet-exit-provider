@@ -1,5 +1,3 @@
-
-
 import os
 
 
@@ -35,6 +33,9 @@ WEB_PORT = getenv("LN_EXIT_WEB_PORT", '4000', int)
 # run the webapp in debug mode?
 DEBUG = getenv("LN_EXIT_DEBUG", 'false', mkbool)
 
+# the base amount to charge users for an exit in OXEN
+EXIT_FEE = getenv("LN_EXIT_FEE", '10.0', float)
+
 def wallet_url():
     """
     get the wallet rpc url
@@ -43,4 +44,6 @@ def wallet_url():
     if WALLET_RPC_AUTH_FILE:
         with open(WALLET_RPC_AUTH_FILE) as f:
             authinfo = f.read()
-    return 'http://{}@{}:{}/json_rpc'.format(authinfo, WALLET_RPC_HOST, WALLET_RPC_PORT)
+    if authinfo:
+        return 'http://{}@{}:{}/json_rpc'.format(authinfo, WALLET_RPC_HOST, WALLET_RPC_PORT)
+    raise Exception("invalid configuration, WALLET_RPC_AUTHINFO and WALLET_RPC_AUTH_FILE are both not set, one must be")
