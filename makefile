@@ -1,5 +1,4 @@
-
-include secrets.makefile
+REG=registry.oxen.rocks
 
 BUILD_IMAGE=./contrib/build-docker-images.sh
 
